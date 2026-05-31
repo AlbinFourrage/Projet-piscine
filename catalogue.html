@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoNova - Catalogue</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <div class="logo">AutoNova</div>
+
+      <div class="filters">
+        <h2>Catalogue</h2>
+
+        <div class="filter-block">
+          <h3>Recherche</h3>
+          <input id="searchInput" class="filter-input" type="text" placeholder="Marque, modèle..." />
+        </div>
+
+        <div class="filter-block">
+          <h3>Prix maximum</h3>
+          <input id="maxPriceInput" class="filter-input" type="number" min="0" placeholder="Ex : 50000" />
+        </div>
+
+        <div class="filter-block">
+          <h3>Carburant</h3>
+          <select id="fuelSelect" class="filter-input">
+            <option value="">Tous</option>
+            <option value="Essence">Essence</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Hybride">Hybride</option>
+            <option value="Électrique">Électrique</option>
+          </select>
+        </div>
+
+        <div class="filter-block">
+          <h3>État</h3>
+          <select id="conditionSelect" class="filter-input">
+            <option value="">Tous</option>
+            <option value="Neuf">Neuf</option>
+            <option value="Très bon état">Très bon état</option>
+            <option value="Bon état">Bon état</option>
+            <option value="Non roulant">Non roulant</option>
+          </select>
+        </div>
+
+        <div class="filter-block">
+          <h3>Tri</h3>
+          <select id="sortSelect" class="filter-input">
+            <option value="recent">Plus récent</option>
+            <option value="price_asc">Prix croissant</option>
+            <option value="price_desc">Prix décroissant</option>
+            <option value="year_desc">Année récente</option>
+            <option value="mileage_asc">Kilométrage faible</option>
+          </select>
+        </div>
+
+        <div class="filter-block">
+          <button id="resetFiltersBtn" class="secondary-btn">Réinitialiser</button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <h1>Catalogue des véhicules</h1>
+
+        <nav class="nav-menu">
+          <a href="index.html">Accueil</a>
+          <a href="catalogue.html" class="active">Catalogue</a>
+          <a href="#">Enchères</a>
+          <a href="#">Négociation</a>
+
+          <a href="inscription.html" data-guest>Inscription</a>
+          <a href="connexion.html" data-guest>Connexion</a>
+
+          <a href="creer-vente.html" data-role-seller>Créer une vente</a>
+          <a href="mes-ventes.html" data-role-seller>Mes ventes</a>
+
+          <a href="admin.html" data-role-admin>Administration</a>
+
+          <a href="#" id="logoutLink" class="logout-visible">Déconnexion</a>
+        </nav>
+
+        <p class="user-status">
+          Connecté en tant que : <strong id="userLabel">Visiteur</strong>
+        </p>
+      </header>
+
+      <section class="catalogue-header">
+        <div>
+          <h2>Toutes les annonces actives</h2>
+          <p id="resultCount">Chargement des véhicules...</p>
+        </div>
+
+        <a href="creer-vente.html" class="primary-btn" data-role-seller>
+          + Vendre une voiture
+        </a>
+      </section>
+
+      <section class="trending">
+        <div id="catalogueGrid" class="car-grid">
+          <p>Chargement des véhicules...</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/roles.js"></script>
+  <script src="js/catalogue.js"></script>
+
+  <script>
+    refreshUserInterface();
+
+    setTimeout(async () => {
+      const user = await getCurrentUser();
+
+      if (user) {
+        document.querySelectorAll("[data-logged]").forEach((element) => {
+          element.style.display = "inline-block";
+        });
+
+        document.querySelectorAll("[data-guest]").forEach((element) => {
+          element.style.display = "none";
+        });
+
+        const userLabel = document.getElementById("userLabel");
+        if (userLabel) {
+          userLabel.textContent = `${user.first_name} (${user.role})`;
+        }
+      }
+    }, 300);
+
+    const logoutLink = document.getElementById("logoutLink");
+
+    if (logoutLink) {
+      logoutLink.addEventListener("click", async (event) => {
+        event.preventDefault();
+        await logout();
+      });
+    }
+  </script>
+</body>
+</html>

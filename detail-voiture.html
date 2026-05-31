@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoNova - Détail voiture</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <div class="logo">AutoNova</div>
+      <div class="filters">
+        <h2>Navigation</h2>
+        <div class="filter-block">
+          <h3>Actions</h3>
+          <label><a href="index.html">Accueil</a></label>
+          <label><a href="catalogue.html">Catalogue</a></label>
+          <label><a href="creer-vente.html" data-role-seller>Créer une vente</a></label>
+          <label><a href="mes-ventes.html" data-role-seller>Mes ventes</a></label>
+          <label><a href="connexion.html" data-guest>Connexion</a></label>
+          <label><a href="inscription.html" data-guest>Inscription</a></label>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <h1>Détail du véhicule</h1>
+        <nav class="nav-menu">
+          <a href="index.html">Accueil</a>
+          <a href="catalogue.html">Catalogue</a>
+          <a href="#">Enchères</a>
+          <a href="#">Négociation</a>
+          <a href="inscription.html" data-guest>Inscription</a>
+          <a href="connexion.html" data-guest>Connexion</a>
+          <a href="creer-vente.html" data-role-seller>Créer une vente</a>
+          <a href="mes-ventes.html" data-role-seller>Mes ventes</a>
+          <a href="admin.html" data-role-admin>Administration</a>
+          <a href="#" id="logoutLink" class="logout-visible">Déconnexion</a>
+        </nav>
+        <p class="user-status">Connecté en tant que : <strong id="userLabel">Visiteur</strong></p>
+      </header>
+
+      <section id="detailContainer" class="detail-container">
+        <p>Chargement du véhicule...</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/roles.js"></script>
+  <script src="js/detail-voiture.js?v=9"></script>
+  <script>
+    refreshUserInterface();
+
+    const logoutLink = document.getElementById("logoutLink");
+    if (logoutLink) {
+      logoutLink.addEventListener("click", async (event) => {
+        event.preventDefault();
+        await logout();
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoNova - Administration</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <div class="logo">AutoNova</div>
+      <div class="filters">
+        <h2>Admin</h2>
+        <div class="filter-block">
+          <h3>Navigation</h3>
+          <label><a href="index.html">Accueil</a></label>
+          <label><a href="catalogue.html">Catalogue</a></label>
+          <label><a href="notifications.html">Notifications</a></label>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <h1>Administration</h1>
+        <nav class="nav-menu">
+          <a href="index.html">Accueil</a>
+          <a href="catalogue.html">Catalogue</a>
+          <a href="notifications.html">Notifications</a>
+          <a href="admin.html" class="active">Administration</a>
+          <a href="#" id="logoutLink" class="logout-visible">Déconnexion</a>
+        </nav>
+      </header>
+
+      <section class="admin-stats">
+        <article><span id="totalUsers">0</span><p>Utilisateurs</p></article>
+        <article><span id="totalCars">0</span><p>Annonces</p></article>
+        <article><span id="activeCars">0</span><p>Actives</p></article>
+        <article><span id="soldCars">0</span><p>Vendues</p></article>
+      </section>
+
+      <section class="admin-tabs">
+        <button class="admin-tab active" data-tab="users">Utilisateurs</button>
+        <button class="admin-tab" data-tab="cars">Annonces</button>
+      </section>
+
+      <section id="usersPanel" class="table-box admin-panel">
+        <div class="section-title"><h2>Utilisateurs</h2></div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nom</th>
+              <th>Email</th>
+              <th>Rôle</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="usersBody">
+            <tr><td colspan="6">Chargement...</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="carsPanel" class="table-box admin-panel hidden">
+        <div class="section-title"><h2>Annonces</h2></div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Voiture</th>
+              <th>Vendeur</th>
+              <th>Prix</th>
+              <th>Type</th>
+              <th>Statut</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="carsBody">
+            <tr><td colspan="7">Chargement...</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <div id="adminMessage" class="alert"></div>
+    </main>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/roles.js"></script>
+  <script src="js/admin.js"></script>
+  <script>
+    protectPage(["admin"]);
+    document.getElementById("logoutLink").addEventListener("click", async (event) => {
+      event.preventDefault();
+      await logout();
+    });
+  </script>
+</body>
+</html>

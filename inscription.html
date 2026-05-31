@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoNova - Création de compte</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <div class="logo">AutoNova</div>
+      <div class="filters">
+        <h2>Compte</h2>
+        <div class="filter-block">
+          <h3>Navigation</h3>
+          <label><a href="index.html">Accueil</a></label>
+          <label><a href="inscription.html">Créer un compte</a></label>
+          <label><a href="connexion.html">Connexion</a></label>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <h1>Créer un compte</h1>
+        <div class="top-actions">
+          <button>🔔</button>
+          <button>♡</button>
+          <button>🛒</button>
+          <button>👤</button>
+        </div>
+        <nav class="nav-menu">
+          <a href="index.html">Accueil</a>
+          <a href="#">Catalogue</a>
+          <a href="#">Enchères</a>
+          <a href="#">Négociation</a>
+          <a href="creer-vente.html">Créer une vente</a>
+          <a href="mes-ventes.html">Mes ventes</a>
+          <a href="inscription.html" class="active">Inscription</a>
+        </nav>
+      </header>
+
+      <section class="form-box auth-box">
+        <h2>Rejoindre AutoNova</h2>
+        <p>Crée ton compte pour acheter, vendre, enchérir ou négocier des véhicules.</p>
+
+        <form id="registerForm" class="form-grid">
+          <div class="form-group">
+            <label for="first_name">Prénom</label>
+            <input id="first_name" name="first_name" type="text" placeholder="Ex : Adam" required />
+          </div>
+
+          <div class="form-group">
+            <label for="last_name">Nom</label>
+            <input id="last_name" name="last_name" type="text" placeholder="Ex : Martin" required />
+          </div>
+
+          <div class="form-group full">
+            <label for="email">Adresse email</label>
+            <input id="email" name="email" type="email" placeholder="exemple@mail.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input id="password" name="password" type="password" placeholder="Minimum 8 caractères" required />
+          </div>
+
+          <div class="form-group">
+            <label for="confirm_password">Confirmer le mot de passe</label>
+            <input id="confirm_password" name="confirm_password" type="password" placeholder="Répète le mot de passe" required />
+          </div>
+
+          <div class="form-group full">
+            <label for="role">Type de compte</label>
+            <select id="role" name="role" required>
+              <option value="">Choisir un rôle</option>
+              <option value="buyer">Acheteur</option>
+              <option value="seller">Vendeur</option>
+            </select>
+          </div>
+
+          <div class="form-actions full">
+            <button type="submit" class="primary-btn">Créer mon compte</button>
+            <a href="connexion.html" class="secondary-btn">J’ai déjà un compte</a>
+          </div>
+        </form>
+
+        <div id="message" class="alert"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/register.js"></script>
+</body>
+</html>

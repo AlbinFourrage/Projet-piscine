@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoNova - Enchères</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <div class="logo">AutoNova</div>
+      <div class="filters">
+        <h2>Enchères</h2>
+        <div class="filter-block">
+          <h3>Navigation</h3>
+          <label><a href="catalogue.html">Catalogue</a></label>
+          <label><a href="mes-ventes.html">Mes ventes</a></label>
+          <label><a href="index.html">Accueil</a></label>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <h1>Historique des enchères</h1>
+        <nav class="nav-menu">
+          <a href="index.html">Accueil</a>
+          <a href="catalogue.html">Catalogue</a>
+          <a href="mes-ventes.html">Mes ventes</a>
+          <a href="#" id="logoutLink" class="logout-visible">Déconnexion</a>
+        </nav>
+      </header>
+
+      <section class="table-box">
+        <div class="section-title">
+          <h2 id="auctionTitle">Chargement...</h2>
+          <a id="backToDetail" href="catalogue.html">Retour détail</a>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Montant</th>
+              <th>Utilisateur</th>
+              <th>Email</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody id="bidsBody">
+            <tr><td colspan="4">Chargement...</td></tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/session.js"></script>
+  <script src="js/bids.js"></script>
+  <script>
+    const logoutLink = document.getElementById("logoutLink");
+    if (logoutLink) {
+      logoutLink.addEventListener("click", async (event) => {
+        event.preventDefault();
+        await logout();
+      });
+    }
+  </script>
+</body>
+</html>

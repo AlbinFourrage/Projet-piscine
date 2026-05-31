@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoNova - Accueil</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    .user-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: #e2e8f0;
+      display: grid;
+      place-items: center;
+      text-decoration: none;
+      font-size: 20px;
+      color: #0f172a;
+    }
+  </style>
+</head>
+
+
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <div class="logo">AutoNova</div>
+
+      <div class="filters">
+        <h2>Filtre</h2>
+
+        <div class="filter-block">
+          <h3>Kilométrage</h3>
+          <input type="range" min="0" max="250000" value="80000" />
+          <div class="range-labels">
+            <span>0 km</span>
+            <span>250k km</span>
+          </div>
+        </div>
+
+        <div class="filter-block">
+          <h3>État</h3>
+          <label><input type="radio" name="etat" /> Neuf</label>
+          <label><input type="radio" name="etat" /> Très bon état</label>
+          <label><input type="radio" name="etat" /> Bon état</label>
+          <label><input type="radio" name="etat" /> Non roulant</label>
+        </div>
+
+        <div class="filter-block">
+          <h3>Carburant</h3>
+          <label><input type="checkbox" /> Essence</label>
+          <label><input type="checkbox" /> Diesel</label>
+          <label><input type="checkbox" /> Hybride</label>
+          <label><input type="checkbox" /> Électrique</label>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <h1>Page d’accueil</h1>
+
+        <div class="top-actions">
+          
+          <a href="notifications.html" class="user-btn" title="Notifications">🔔</a>       
+         <button>♡</button>
+          <button>🛒</button>
+          <a href="connexion.html" class="user-btn" title="Connexion">👤</a>
+        </div>
+
+        <div class="search-bar">
+          <input type="text" placeholder="Rechercher une marque, un modèle, une motorisation..." />
+        </div>
+
+        
+                <nav class="nav-menu">
+
+  <a href="index.html">Accueil</a>
+
+  <a href="catalogue.html">Catalogue</a>
+
+  <a href="admin.html"
+     id="adminButton"
+     data-role-admin
+     class="admin-visible-btn">
+     Administration
+  </a>
+
+  <a href="inscription.html" data-guest>Inscription</a>
+
+  <a href="connexion.html" data-guest>Connexion</a>
+
+  <a href="creer-vente.html" data-role-seller>
+    Créer une vente
+  </a>
+
+  <a href="mes-ventes.html" data-role-seller>
+    Mes ventes
+  </a>
+
+  <a href="mes-achats.html" data-role-buyer>
+    Mes achats
+  </a>
+
+  <a href="mes-encheres.html" data-role-buyer>
+    Mes enchères
+  </a>
+
+  <a href="#" onclick="logout()" data-logged>
+    Déconnexion
+  </a>
+
+</nav>
+
+        <p class="user-status">
+          Connecté en tant que : <strong id="userLabel">Visiteur</strong>
+        </p>
+
+
+      </header>
+
+      <section class="hero">
+        <div class="hero-text">
+          <p class="badge">Vente, achat, enchères et négociation</p>
+          <h2>Trouvez la voiture qui correspond vraiment à votre budget.</h2>
+          <p>Comparez les annonces, participez aux enchères ou négociez directement avec les vendeurs vérifiés.</p>
+          <a class="btn light-btn" href="catalogue.html">Explorer le catalogue →</a>
+          <a class="btn light-btn" href="inscription.html">Créer un compte</a>
+          <a class="btn light-btn" href="creer-vente.html">Vendre ma voiture</a>
+        </div>
+        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1200&auto=format&fit=crop" alt="Voiture sportive" />
+      </section>
+
+      <section class="categories">
+        <h2>Catégories populaires</h2>
+        <div class="category-grid">
+          <button>Neuf</button>
+          <button>Occasion</button>
+          <button>Collection</button>
+          <button>SUV</button>
+          <button>Professionnelle</button>
+          <button>Voir plus</button>
+        </div>
+      </section>
+
+      <div class="content-grid">
+        <section class="trending">
+          <div class="section-title">
+            <h2>Produits en tendance</h2>
+            <a href="#">Voir tout</a>
+          </div>
+
+          <div class="car-grid">
+            <article class="car-card">
+              <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?q=80&w=900&auto=format&fit=crop" alt="BMW Série 3" />
+              <div>
+                <h3>BMW Série 3 320d</h3>
+                <p>2019 • 82 000 km • Diesel</p>
+                <strong>24 900 €</strong>
+                <a href="#">Détails</a>
+              </div>
+            </article>
+
+            <article class="car-card">
+              <img src="https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?q=80&w=900&auto=format&fit=crop" alt="Audi A3" />
+              <div>
+                <h3>Audi A3 Sportback</h3>
+                <p>2020 • 69 000 km • Essence</p>
+                <strong>21 500 €</strong>
+                <a href="#">Détails</a>
+              </div>
+            </article>
+
+            <article class="car-card">
+              <img src="https://images.unsplash.com/photo-1616788494707-ec28f08d05a1?q=80&w=900&auto=format&fit=crop" alt="Mercedes Classe A" />
+              <div>
+                <h3>Mercedes Classe A</h3>
+                <p>2021 • 41 000 km • Hybride</p>
+                <strong>27 800 €</strong>
+                <a href="#">Détails</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <aside class="auction-box">
+          <h2>Enchères en cours</h2>
+          <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=900&auto=format&fit=crop" alt="Porsche aux enchères" />
+          <h3>Porsche 911 Carrera</h3>
+          <p><strong>Temps restant :</strong> 02h 18min 44sec</p>
+          <p><strong>Prix actuel :</strong> 58 400 €</p>
+          <p>✅ Vendeur vérifié</p>
+          <button class="auction-btn">Participer à l’enchère</button>
+          <button class="negotiate-btn">Négocier avec le vendeur</button>
+        </aside>
+      </div>
+    </main>
+  </div>
+  <script src="js/config.js"></script>
+<script src="js/session.js"></script>
+<script src="js/roles.js"></script>
+<script src="js/notification-badge.js"></script>
+<script>
+  refreshUserInterface();
+</script>
+
+</body>
+</html>
