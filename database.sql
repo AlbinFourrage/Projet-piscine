@@ -4,7 +4,7 @@ CREATE DATABASE IF NOT EXISTS autonova
 
 USE autonova;
 
-CREATE TABLE IF NOT EXISTS utilisateurs (
+CREATE TABLE IF NOT EXISTS utilisateurs ( 
   id INT AUTO_INCREMENT PRIMARY KEY,
   Nom VARCHAR(100) NOT NULL,
   Prenom VARCHAR(100) NOT NULL,
@@ -13,7 +13,6 @@ CREATE TABLE IF NOT EXISTS utilisateurs (
   role ENUM('acheteur', 'vendeur', 'admin') NOT NULL DEFAULT 'acheteur',
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE TABLE IF NOT EXISTS voitures (
   id INT AUTO_INCREMENT PRIMARY KEY,
   vendeur_id INT NOT NULL,
