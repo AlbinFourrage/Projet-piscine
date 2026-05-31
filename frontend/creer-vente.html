@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoNova - Créer une vente</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar">
+      <div class="logo">AutoNova</div>
+      <div class="filters">
+        <h2>Vendeur</h2>
+        <div class="filter-block">
+          <h3>Actions</h3>
+          <label><a href="creer-vente.html">Créer une vente</a></label>
+          <label><a href="mes-ventes.html">Mes ventes</a></label>
+          <label><a href="index.html">Retour accueil</a></label>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <header class="top-header">
+        <h1>Créer une vente</h1>
+
+        <div class="top-actions">
+          <button>🔔</button>
+          <button>♡</button>
+          <button>🛒</button>
+          <button>👤</button>
+        </div>
+
+        <div class="search-bar">
+          <input type="text" placeholder="Créer une annonce de voiture..." disabled />
+        </div>
+
+        <nav class="nav-menu">
+          <a href="index.html">Accueil</a>
+          <a href="#">Catalogue</a>
+          <a href="#">Enchères</a>
+          <a href="#">Négociation</a>
+          <a href="#">Catégories</a>
+          <a href="mes-ventes.html">Mes ventes</a>
+          <a href="creer-vente.html" class="active">Créer une vente</a>
+        </nav>
+      </header>
+
+      <section class="form-box">
+        <h2>Informations du véhicule</h2>
+        <p>Remplis le formulaire pour publier une nouvelle annonce. Le backend vérifiera les données avant l’enregistrement.</p>
+
+        <form id="saleForm" class="form-grid">
+          <div class="form-group">
+            <label for="title">Titre de l’annonce</label>
+            <input id="title" name="title" type="text" placeholder="Ex : BMW Série 3 320d" required />
+          </div>
+
+          <div class="form-group">
+            <label for="brand">Marque</label>
+            <input id="brand" name="brand" type="text" placeholder="BMW, Audi, Peugeot..." required />
+          </div>
+
+          <div class="form-group">
+            <label for="model">Modèle</label>
+            <input id="model" name="model" type="text" placeholder="Série 3, A3, 208..." required />
+          </div>
+
+          <div class="form-group">
+            <label for="year">Année</label>
+            <input id="year" name="year" type="number" min="1950" max="2026" required />
+          </div>
+
+          <div class="form-group">
+            <label for="mileage">Kilométrage</label>
+            <input id="mileage" name="mileage" type="number" min="0" placeholder="82000" required />
+          </div>
+
+          <div class="form-group">
+            <label for="fuel">Carburant</label>
+            <select id="fuel" name="fuel" required>
+              <option value="">Choisir</option>
+              <option value="Essence">Essence</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Hybride">Hybride</option>
+              <option value="Électrique">Électrique</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="condition">État</label>
+            <select id="condition" name="condition" required>
+              <option value="">Choisir</option>
+              <option value="Neuf">Neuf</option>
+              <option value="Très bon état">Très bon état</option>
+              <option value="Bon état">Bon état</option>
+              <option value="Non roulant">Non roulant</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="price">Prix de vente immédiate</label>
+            <input id="price" name="price" type="number" min="1" step="0.01" placeholder="24900" required />
+          </div>
+
+          <div class="form-group">
+            <label for="sale_type">Type de vente</label>
+            <select id="sale_type" name="sale_type" required>
+              <option value="direct">Achat immédiat</option>
+              <option value="auction">Enchère</option>
+              <option value="negotiation">Négociation</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="auction_start_price">Prix de départ enchère</label>
+            <input id="auction_start_price" name="auction_start_price" type="number" min="0" step="0.01" placeholder="Optionnel" />
+          </div>
+
+          <div class="form-group">
+            <label for="auction_end_date">Fin de l’enchère</label>
+            <input id="auction_end_date" name="auction_end_date" type="datetime-local" />
+          </div>
+
+          <div class="form-group">
+            <label for="image_url">URL de l’image</label>
+            <input id="image_url" name="image_url" type="url" placeholder="https://..." />
+          </div>
+
+          <div class="form-group full">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" placeholder="État du véhicule, entretien, options, historique..." required></textarea>
+          </div>
+
+          <div class="form-actions full">
+            <button type="submit" class="primary-btn">Publier l’annonce</button>
+            <a href="index.html" class="secondary-btn">Annuler</a>
+          </div>
+        </form>
+
+        <div id="message" class="alert"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="js/config.js"></script>
+  <script src="js/create-sale.js"></script>
+</body>
+</html>
