@@ -1,69 +1,70 @@
-CREATE DATABASE IF NOT EXISTS autonova 
+CREATE DATABASE IF NOT EXISTS autonova
   CHARACTER SET utf8mb4
   COLLATE utf8mb4_unicode_ci;
 
 USE autonova;
 
-CREATE TABLE IF NOT EXISTS utilisateurs ( 
+CREATE TABLE IF NOT EXISTS users (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  Nom VARCHAR(100) NOT NULL,
-  Prenom VARCHAR(100) NOT NULL,
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL,
   email VARCHAR(180) NOT NULL UNIQUE,
-  mot_de_passe VARCHAR(255) NOT NULL,
-  role ENUM('acheteur', 'vendeur', 'admin') NOT NULL DEFAULT 'acheteur',
+  password_hash VARCHAR(255) NOT NULL,
+  role ENUM('buyer', 'seller', 'admin') NOT NULL DEFAULT 'buyer',
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-CREATE TABLE IF NOT EXISTS voitures (
+
+CREATE TABLE IF NOT EXISTS cars (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  vendeur_id INT NOT NULL,
-  Titre VARCHAR(180) NOT NULL,
-  Marque VARCHAR(100) NOT NULL,
-  Modele VARCHAR(100) NOT NULL,
-  annee INT NOT NULL,
-  kilometrage INT NOT NULL,
+  seller_id INT NOT NULL,
+  title VARCHAR(180) NOT NULL,
+  brand VARCHAR(100) NOT NULL,
+  model VARCHAR(100) NOT NULL,
+  year INT NOT NULL,
+  mileage INT NOT NULL,
   fuel ENUM('Essence', 'Diesel', 'Hybride', 'Électrique') NOT NULL,
-  voiture_condition ENUM('Neuf', 'Très bon état', 'Bon état', 'Non roulant') NOT NULL,
+  car_condition ENUM('Neuf', 'Très bon état', 'Bon état', 'Non roulant') NOT NULL,
   price DECIMAL(10,2) NOT NULL,
   sale_type ENUM('direct', 'auction', 'negotiation') NOT NULL,
   description TEXT NOT NULL,
   image_url VARCHAR(500),
-  status ENUM('active', 'vendue', 'inactive', 'suspend') NOT NULL DEFAULT 'active',
+  status ENUM('active', 'sold', 'inactive', 'pending') NOT NULL DEFAULT 'active',
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT fk_voitures_vendeur
-    FOREIGN KEY (vendeur_id) REFERENCES utilisateurs(id)
+  CONSTRAINT fk_cars_seller
+    FOREIGN KEY (seller_id) REFERENCES users(id)
     ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS actions (
+CREATE TABLE IF NOT EXISTS auctions (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  voiture_id INT NOT NULL,
-  Prix_depart DECIMAL(10,2) NOT NULL,
-  Prix_actuel DECIMAL(10,2) NOT NULL,
-  Date_fin DATETIME NOT NULL,
-  status ENUM('Ouvert', 'Ferme', 'Annule') NOT NULL DEFAULT 'Ouvert',
+  car_id INT NOT NULL,
+  start_price DECIMAL(10,2) NOT NULL,
+  current_price DECIMAL(10,2) NOT NULL,
+  end_date DATETIME NOT NULL,
+  status ENUM('open', 'closed', 'cancelled') NOT NULL DEFAULT 'open',
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT fk_actions_voiture
-    FOREIGN KEY (voiture_id) REFERENCES voitures(id)
+  CONSTRAINT fk_auctions_car
+    FOREIGN KEY (car_id) REFERENCES cars(id)
     ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS notifications (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  utilisateur_id INT NOT NULL,
+  user_id INT NOT NULL,
   message VARCHAR(255) NOT NULL,
   is_read TINYINT(1) NOT NULL DEFAULT 0,
   created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  CONSTRAINT fk_notifications_utilisateur
-    FOREIGN KEY (utilisateur_id) REFERENCES utilisateurs(id)
+  CONSTRAINT fk_notifications_user
+    FOREIGN KEY (user_id) REFERENCES users(id)
     ON DELETE CASCADE
 );
 
-INSERT INTO utilisateurs (Nom, Prenom, email, mot_de_passe, role)
+INSERT INTO users (first_name, last_name, email, password_hash, role)
 VALUES (
   'Utilisateur',
   'Test',
   'vendeur@test.fr',
   '$2y$10$exemplehashpedagogique',
-  'vendeur'
+  'seller'
 )
 ON DUPLICATE KEY UPDATE email = email;
